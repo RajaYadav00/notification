@@ -25,6 +25,7 @@ public class NotificationTemplateServiceImpl implements INotificationTemplateSer
 		notificationTemp.setNotificationType(NotificationTypeConst.valueOf(notificationTemp.getNotificationType().toUpperCase()).getGetMessage());
 		notificationTemp.setType(NotificationTypeConst.valueOf(notificationTemp.getType().toUpperCase()).getGetMessage());
 		
+		
 		iNotificationTemplateRepo.save(notificationTemp);
 		
 		

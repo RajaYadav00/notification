@@ -32,19 +32,18 @@ public class NotificationTempController {
 	@PostMapping(value="/saveNotificationTemplate")
 	public ResponseEntity<SuccessResponseModel> saveTemplate(@RequestBody String template){
 		
-		throw new NotificationTemplateError("checking error");
 		
-//		LoggingResponseModel msgStart = LoggingResponseModel.builder()
-//											.statusCode(HttpStatus.ACCEPTED)
-//											.message("started at template saving")
-//											.build();
-//		log.info(gson.toJson(msgStart));
-//		
-//		SuccessResponseModel response=inotificationService.saveNotificationTemplate(gson.fromJson(template,NotificationTemplate.class));
-//		
-//		
-//		return new ResponseEntity<>(response,HttpStatus.OK);
-//		
+		LoggingResponseModel msgStart = LoggingResponseModel.builder()
+											.statusCode(HttpStatus.ACCEPTED)
+											.message("started at template saving")
+											.build();
+		log.info(gson.toJson(msgStart));
+		
+		SuccessResponseModel response=inotificationService.saveNotificationTemplate(gson.fromJson(template,NotificationTemplate.class));
+		
+		
+		return new ResponseEntity<>(response,HttpStatus.OK);
+		
 	}
 
 }

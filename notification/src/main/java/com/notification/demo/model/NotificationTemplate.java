@@ -7,7 +7,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.NotBlank;
 
-import com.notification.demo.model.common.NotificationTypeConst;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

@@ -1,8 +1,8 @@
 package com.notification.demo.exception;
 
-import lombok.Data;
+import lombok.Getter;
 
-@Data
+@Getter
 public class NotificationTemplateError extends RuntimeException {
 	
 	
@@ -21,4 +21,6 @@ public class NotificationTemplateError extends RuntimeException {
 		super(message);
 		this.path=path;
 	}
+
+	
 }

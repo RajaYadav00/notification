@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.NotBlank;
 
+import com.notification.demo.model.common.NotificationTypeConst;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -28,12 +29,12 @@ public class NotificationTemplate {
 	private Integer id;
 	
 //	@NotBlank (message = "notificationType is required")
-	private String notificationType;
+	private NotificationTypeConst notificationType;
 	
 //	@NotBlank (message = "notificationType is required")
-	private String type;
+	private NotificationTypeConst type;
 	
-	@NotBlank (message = "notificationType is required")
+//	@NotBlank (message = "notificationType is required")
 	private Date templateValidUpto;
 	
 	private String subject;
@@ -42,9 +43,9 @@ public class NotificationTemplate {
 	private String messageBody;
 	
 	@NotBlank (message = "requestdevice is required")
-	private String requestdevice;
+	private String requestDevice;
 	
-	@NotBlank (message = "requestOn is required")
-	private String requestOn;
+//	@NotBlank (message = "requestOn is required")
+	private Date requestOn;
 
 }

@@ -19,28 +19,24 @@ public class EmailSenderServiceimpl {
 	@Autowired
      JavaMailSender mailsender;
 	
-	public void sendEmail(String toMail,String subject,String body) throws MessagingException
-	{
-		SimpleMailMessage message=new SimpleMailMessage();
-		message.setFrom("ranjeetkumaryadvv@gmail.com");
-		message.setTo(toMail);
-		message.setText(body);
-		message.setSubject(subject);
-//	    message.setBcc(["",""]);
-//	    cclist.toArray(new String[0])
-		message.setCc("ranjeetkumaryadvv@gmail.com","rajayadavce@gmail.com");
-		mailsender.send(message);
+	public void sendEmail(String toMail,String subject,String body,String []ccList, String []bccList,String []attachement) throws MessagingException{
 		
 		
+		MimeMessage mimeMessage=mailsender.createMimeMessage();
+		MimeMessageHelper mimemessagehelper=new MimeMessageHelper(mimeMessage, false);
+		mimemessagehelper.setFrom("ranjeetkumaryadvv@gmail.com");
+		mimemessagehelper.setTo(toMail);
+		mimemessagehelper.setText(body);
+		mimemessagehelper.setSubject(subject);
+		mimemessagehelper.setCc(ccList);
+		mimemessagehelper.setBcc(bccList);
 		
-//		MimeMessage mimeMessage=mailsender.createMimeMessage();
-//		MimeMessageHelper mimemessagehelper=new MimeMessageHelper(mimeMessage, false);
-//		mimemessagehelper.setFrom("ranjeetkumaryadvv@gmail.com");
-//		mimemessagehelper.setTo(toMail);
-//		mimemessagehelper.setText(body);
-//		mimemessagehelper.setSubject(subject);
-//		mailsender.send(mimeMessage);
-//		System.out.println("jai rama ji");
+		
+//		mimemessagehelper.addAttachment(body, null);
+		
+		
+		mailsender.send(mimeMessage);
+		System.out.println("jai rama ji");
 	}
 
 	

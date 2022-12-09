@@ -39,6 +39,11 @@ public class NotificationTempController {
 											.build();
 		log.info(gson.toJson(msgStart));
 		
+//		System.out.println(template.length());
+	
+		
+	
+		
 		SuccessResponseModel response=inotificationService.saveNotificationTemplate(gson.fromJson(template,NotificationTemplate.class));
 		
 		

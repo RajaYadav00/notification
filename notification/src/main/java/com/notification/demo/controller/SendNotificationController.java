@@ -33,18 +33,18 @@ public class SendNotificationController {
 	public ResponseEntity<String> sendNotificationviamail(@RequestBody Users user) {
 
 		log.info(user.getNotifyto().toString());
-		Integer templateid = user.getNotificationTemplateId();
+		Integer templateId = user.getNotificationTemplateId();
 
-		NotificationTemplate template = notificationTemplateServiceImpl.getTemplate(templateid);
-		log.info(template.getSubject());		user.getNotifyto().forEach(x -> {
-			log.info(x.getEmail());
-			try {
-				emailSenderServiceimpl.sendEmail(x.getEmail(),template.getSubject(),template.getMessageBody());
-			} catch (Exception e) {
-				System.out.println("catch m aa gye");
-				e.printStackTrace();
-			}
-		});
+ 	NotificationTemplate template = notificationTemplateServiceImpl.getTemplate(templateId);
+//		log.info(template.getSubject());		
+//		user.getNotifyto().forEach(x -> {
+//			
+//			try {
+//				emailSenderServiceimpl.sendEmail(x.getEmail(),template.getSubject(),template.getMessageBody().toString(),user.getCcto(),user.getBccto(),user.getAttachFile());
+//			} catch (Exception e) {
+//				e.printStackTrace();
+//			}
+//		});
 
 		return new ResponseEntity<>("kam ho rha h", HttpStatus.ACCEPTED);
 	}

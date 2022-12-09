@@ -33,7 +33,7 @@ public class NotificationTempController {
 	public ResponseEntity<SuccessResponseModel> saveTemplate(@RequestBody String template){
 		LoggingResponseModel msgStart = LoggingResponseModel.builder()
 											.statusCode(HttpStatus.ACCEPTED)
-											.message("started at template saving")
+											.message("started at template saving.")
 											.build();
 		log.info(gson.toJson(msgStart));
 		

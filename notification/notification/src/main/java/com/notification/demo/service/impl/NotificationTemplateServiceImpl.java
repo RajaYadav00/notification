@@ -26,8 +26,11 @@ public class NotificationTemplateServiceImpl implements INotificationTemplateSer
 		notificationTemp.setType(NotificationTypeConst.valueOf(notificationTemp.getType().toUpperCase()).getGetMessage());
 		
 		
-		iNotificationTemplateRepo.save(notificationTemp);
+		NotificationTemplate savedTemplate=iNotificationTemplateRepo.save(notificationTemp);
 		
+		if(savedTemplate==null) {
+			throw new NotificationTemplateError("Notification template is not saved");
+		}
 		
 		
 		return SuccessResponseModel.builder().messsage("Template is successfully added to the system")

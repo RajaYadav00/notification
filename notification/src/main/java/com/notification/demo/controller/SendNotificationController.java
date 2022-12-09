@@ -17,6 +17,7 @@ import com.notification.demo.service.impl.NotificationTemplateServiceImpl;
 
 import lombok.extern.log4j.Log4j;
 import lombok.extern.slf4j.Slf4j;
+
 @Slf4j
 @RestController
 @RequestMapping("api/v0.0.1/otp")
@@ -24,30 +25,28 @@ public class SendNotificationController {
 
 	@Autowired
 	private EmailSenderServiceimpl emailSenderServiceimpl;
-	
-	@Autowired 
+
+	@Autowired
 	NotificationTemplateServiceImpl notificationTemplateServiceImpl;
 
 	@PostMapping("/sendemailnotification")
-	public ResponseEntity<String> sendNotificationviamail(@RequestBody Users user)
-	{
-		
+	public ResponseEntity<String> sendNotificationviamail(@RequestBody Users user) {
+
 		log.info(user.getNotifyto().toString());
-		Integer templateid=user.getNotificationTemplateId();
-		
-		NotificationTemplate template= notificationTemplateServiceImpl.getTemplate(templateid);
-		log.info(template.getSubject());
-		user.getNotifyto().forEach(x->
-		{
-			log.info(x.getEmail());			try {
-	emailSenderServiceimpl.sendEmail(x.getEmail(),
-				"Notification", "Happy Birthday To You");
+		Integer templateid = user.getNotificationTemplateId();
+
+		NotificationTemplate template = notificationTemplateServiceImpl.getTemplate(templateid);
+		log.info(template.getSubject());		user.getNotifyto().forEach(x -> {
+			log.info(x.getEmail());
+			try {
+				emailSenderServiceimpl.sendEmail(x.getEmail(),template.getSubject(),template.getMessageBody());
 			} catch (Exception e) {
+				System.out.println("catch m aa gye");
 				e.printStackTrace();
 			}
 		});
 
-		return new ResponseEntity<>("kam ho rha h",HttpStatus.ACCEPTED);
+		return new ResponseEntity<>("kam ho rha h", HttpStatus.ACCEPTED);
 	}
 
 }

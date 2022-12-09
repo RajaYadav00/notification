@@ -1,6 +1,8 @@
 package com.notification.demo.model;
 
 
+import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -32,7 +34,7 @@ public class NotificationTemplate {
 	private String type;
 	
 	@NotBlank (message = "notificationType is required")
-	private String templateValidUpto;
+	private Date templateValidUpto;
 	
 	private String subject;
 	

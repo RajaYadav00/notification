@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 import com.notification.demo.model.NotificationTemplate;
 
 @Repository
-public interface INotificationTemplateRepository extends JpaRepository<NotificationTemplate, Integer>{
-  public NotificationTemplate getTemplateById(Integer id);
+public interface INotificationTemplateRepository extends JpaRepository<NotificationTemplate, Integer> {
+
+	public NotificationTemplate getTemplateById(Integer id);
 }

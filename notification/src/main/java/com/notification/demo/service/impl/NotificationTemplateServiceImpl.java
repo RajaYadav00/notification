@@ -1,5 +1,6 @@
 package com.notification.demo.service.impl;
 
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,30 +18,33 @@ public class NotificationTemplateServiceImpl implements INotificationTemplateSer
 
 	@Autowired
 	INotificationTemplateRepository iNotificationTemplateRepo;
-	
+
 	@Override
 	public SuccessResponseModel saveNotificationTemplate(NotificationTemplate notificationTemp) {
-		
-	
+
 //		notificationTemp.setNotificationType(NotificationTypeConst.valueOf(notificationTemp.getNotificationType().toUpperCase());
 //		notificationTemp.setType(NotificationTypeConst.valueOf(notificationTemp.getType().toUpperCase());
 //		notificationTemp.setNotificationType(null);
 		try {
 			iNotificationTemplateRepo.save(notificationTemp);
-			
+			System.out.println(iNotificationTemplateRepo.getById(1).getNotificationType());
+
 		} catch (Exception e) {
 			throw new NotificationTemplateError(e.getCause().getMessage());
 		}
-		
-		
-	
-		
-		return SuccessResponseModel.builder().messsage("Template is successfully added to the system")		 													.templateId(notificationTemp.getId()).status(HttpStatus.OK.value()).build();
+
+		return SuccessResponseModel.builder().messsage("Template is successfully added to the system")
+				.templateId(notificationTemp.getId()).status(HttpStatus.OK.value()).build();
 	}
-	
-	public NotificationTemplate getTemplate(Integer id)
-	{
-		System.out.println("uiygtuy"+id+""+iNotificationTemplateRepo.getById(id));
-		return iNotificationTemplateRepo.getById(id);
+
+	public NotificationTemplate getTemplate(Integer id) {
+		Optional<NotificationTemplate> opt = iNotificationTemplateRepo.findById(id);
+
+		if (!opt.isPresent()) {
+
+			throw new NotificationTemplateError("Notification template is not present having Id :" + id);
+		}
+		
+		return opt.get();
 	}
 }

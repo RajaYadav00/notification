@@ -8,8 +8,6 @@ import lombok.ToString;
 @Builder
 @ToString
 public class EmailObj {
-	
 	private String otp;
 	private String otpid;
-
 }

@@ -19,8 +19,6 @@ public class EmailSenderServiceimpl {
 			String[] file,String name) throws MessagingException {
 
 		String msg = msgbody.replace("{{#cusname}}", name);
-		System.out.println(msg);
-
 		MimeMessage mimeMessage = mailsender.createMimeMessage();
 		MimeMessageHelper mimemessagehelper = new MimeMessageHelper(mimeMessage, true);
 		mimemessagehelper.setFrom("ranjeetkumaryadvv@gmail.com");

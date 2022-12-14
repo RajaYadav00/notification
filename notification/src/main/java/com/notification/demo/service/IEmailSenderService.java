@@ -1,5 +1,8 @@
 package com.notification.demo.service;
 
+import com.notification.demo.model.Users;
+import com.notification.demo.model.common.SuccessResponseModel;
+
 public interface IEmailSenderService {
-	public void sendEmail(String toMail,String subject,String body);
+	public SuccessResponseModel sendEmail(Users user);
 }

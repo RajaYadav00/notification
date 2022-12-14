@@ -30,7 +30,7 @@ public class SmsService implements ISmsService {
 		sms.getNotifyTo().forEach(user -> {
 
 			Message message = Message
-					.creator(new PhoneNumber(user.getPhone()), new PhoneNumber(tConfig.getTrialNumber()), "happy birthDay").create();
+					.creator(new PhoneNumber(user.getPhone()), new PhoneNumber(tConfig.getTrialNumber()),msg).create();
 
 		});
 

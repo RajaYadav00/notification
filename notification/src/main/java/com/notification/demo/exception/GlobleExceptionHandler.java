@@ -28,18 +28,21 @@ public class GlobleExceptionHandler {
 		String stackTrace = stringWriter.toString();
 
 		ErrorResponseModel error = ErrorResponseModel.builder().errorCode(1).errorDetails(stackTrace)
-				.errorMessage(er.getMessage()).path(er.getPath()).status(HttpStatus.BAD_REQUEST.value())
+				.errorMessage(er.getMessage()).path(wr.getDescription(false)).status(HttpStatus.BAD_REQUEST.value())
 				.timestamp(Timestamp.valueOf(LocalDateTime.now())).traceID(Instant.now().toEpochMilli()).build();
+		
 		return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
 	}
 
 	@ResponseStatus(HttpStatus.BAD_REQUEST)
 	@ExceptionHandler(MethodArgumentNotValidException.class)
-	public ResponseEntity<Map<String, String>> validationExceptionMessage(MethodArgumentNotValidException nValid) {
+	public ResponseEntity<ValidationError> validationExceptionMessage(MethodArgumentNotValidException nValid, WebRequest wr) {
 		Map<String, String> msgList = new HashMap<>();
 		nValid.getBindingResult().getFieldErrors()
 				.forEach(error -> msgList.put(error.getField(), error.getDefaultMessage()));
-		return new ResponseEntity<>(msgList, HttpStatus.BAD_REQUEST);
+		
+		ValidationError error=new ValidationError(HttpStatus.UNPROCESSABLE_ENTITY.value(), msgList,wr.getDescription(false));
+		return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
 	}
 
 }

@@ -1,5 +1,7 @@
 package com.notification.demo.controller;
 
+import javax.mail.MessagingException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,28 +24,19 @@ import lombok.extern.slf4j.Slf4j;
 public class SendNotificationController {
 	@Autowired
 	private EmailSenderServiceimpl emailSenderServiceimpl;
-	@Autowired
-	NotificationTemplateServiceImpl notificationTemplateServiceImpl;
+	
 
 	@Autowired
 	ISmsService ismsService;
 
 	@PostMapping("/sendemailnotification")
-	public ResponseEntity<SuccessResponseModel> sendNotificationviamail(@RequestBody Users user) {
+	public ResponseEntity<SuccessResponseModel> sendNotificationviamail(@RequestBody Users user) throws MessagingException {
 		log.info("Users dto is working");
-		Integer templateId = user.getNotificationTemplateId();
-		NotificationTemplate template = notificationTemplateServiceImpl.getTemplate(templateId);
-		log.info(template.getSubject());
-		user.getNotifyto().forEach(x -> {
-			try {
-				emailSenderServiceimpl.sendEmail(x.getEmail(), template.getSubject(), template.getMessageBody(),
-						user.getCcto(), user.getBccto(), user.getAttachFile(), x.getName());
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		});
-		SuccessResponseModel response = SuccessResponseModel.builder().status(HttpStatus.ACCEPTED.value())
-				.messsage("The Email-notification is generated").templateId(templateId).build();
+		
+		
+		SuccessResponseModel response=emailSenderServiceimpl.sendEmail(user);
+		
+		
 		return new ResponseEntity<>(response, HttpStatus.OK);
 	}
 

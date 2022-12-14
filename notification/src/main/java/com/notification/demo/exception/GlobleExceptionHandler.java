@@ -18,6 +18,7 @@ import com.notification.demo.model.common.ErrorResponseModel;
 
 @ControllerAdvice
 public class GlobleExceptionHandler {
+
 	@ExceptionHandler(NotificationTemplateError.class)
 	public ResponseEntity<ErrorResponseModel> notificationTemplatehandler(NotificationTemplateError er, WebRequest wr,
 			Exception e) {

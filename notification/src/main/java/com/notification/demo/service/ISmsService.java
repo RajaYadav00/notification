@@ -1,9 +1,10 @@
 package com.notification.demo.service;
 
-import com.notification.demo.model.common.SmsPojo;
+import com.notification.demo.model.SmsModule;
+import com.notification.demo.model.common.SuccessResponseModel;
 
 public interface ISmsService {
 	
-	public void sendSms(SmsPojo sms ,String responseOtp);
+	public SuccessResponseModel sendSms(SmsModule sms);
 
 }

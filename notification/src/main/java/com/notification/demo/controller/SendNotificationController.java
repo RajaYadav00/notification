@@ -8,8 +8,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.notification.demo.model.NotificationTemplate;
+import com.notification.demo.model.SmsModule;
 import com.notification.demo.model.Users;
 import com.notification.demo.model.common.SuccessResponseModel;
+import com.notification.demo.service.ISmsService;
 import com.notification.demo.service.impl.EmailSenderServiceimpl;
 import com.notification.demo.service.impl.NotificationTemplateServiceImpl;
 import lombok.extern.slf4j.Slf4j;
@@ -23,6 +25,9 @@ public class SendNotificationController {
 	@Autowired
 	NotificationTemplateServiceImpl notificationTemplateServiceImpl;
 
+	@Autowired
+	ISmsService ismsService;
+
 	@PostMapping("/sendemailnotification")
 	public ResponseEntity<SuccessResponseModel> sendNotificationviamail(@RequestBody Users user) {
 		log.info("Users dto is working");
@@ -32,7 +37,7 @@ public class SendNotificationController {
 		user.getNotifyto().forEach(x -> {
 			try {
 				emailSenderServiceimpl.sendEmail(x.getEmail(), template.getSubject(), template.getMessageBody(),
-						user.getCcto(), user.getBccto(), user.getAttachFile(),x.getName());
+						user.getCcto(), user.getBccto(), user.getAttachFile(), x.getName());
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -41,5 +46,7 @@ public class SendNotificationController {
 				.messsage("The Email-notification is generated").templateId(templateId).build();
 		return new ResponseEntity<>(response, HttpStatus.OK);
 	}
+
+	
 
 }

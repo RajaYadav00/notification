@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.notification.demo.model.NotificationTemplate;
-import com.notification.demo.model.SmsModule;
+import com.notification.demo.model.SmsWhatsappModule;
 import com.notification.demo.model.Users;
 import com.notification.demo.model.common.SuccessResponseModel;
 import com.notification.demo.service.ISmsService;
@@ -24,22 +24,16 @@ import lombok.extern.slf4j.Slf4j;
 public class SendNotificationController {
 	@Autowired
 	private EmailSenderServiceimpl emailSenderServiceimpl;
-	
 
 	@Autowired
 	ISmsService ismsService;
 
 	@PostMapping("/sendemailnotification")
-	public ResponseEntity<SuccessResponseModel> sendNotificationviamail(@RequestBody Users user) throws MessagingException {
+	public ResponseEntity<SuccessResponseModel> sendNotificationviamail(@RequestBody Users user)
+			throws MessagingException {
 		log.info("Users dto is working");
-		
-		
-		SuccessResponseModel response=emailSenderServiceimpl.sendEmail(user);
-		
-		
+		SuccessResponseModel response = emailSenderServiceimpl.sendEmail(user);
 		return new ResponseEntity<>(response, HttpStatus.OK);
 	}
-
-	
 
 }

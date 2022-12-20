@@ -7,6 +7,10 @@ import java.time.Instant;
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -44,5 +48,18 @@ public class GlobleExceptionHandler {
 		ValidationError error=new ValidationError(HttpStatus.UNPROCESSABLE_ENTITY.value(), msgList,wr.getDescription(false));
 		return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
 	}
-
+//	@ExceptionHandler(Exception.class)
+//    public ResponseEntity<Object> handle(Exception ex, 
+//                HttpServletRequest request, HttpServletResponse response) {
+//        if (ex instanceof NullPointerException) {
+//            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+//        }
+////        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+//        System.out.println(ex.getMessage());
+//        System.out.println(HttpStatus.INTERNAL_SERVER_ERROR);
+//        
+//        System.out.println(response.);
+//        EmailException er=new EmailException(ex.getMessage());
+//        return new ResponseEntity<>(er,HttpStatus.INTERNAL_SERVER_ERROR);
+//    }
 }

@@ -1,7 +1,6 @@
 package com.notification.demo.service.impl;
 
 import java.io.File;
-
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,12 +9,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
-
-import com.notification.demo.controller.SendNotificationController;
 import com.notification.demo.model.NotificationTemplate;
 import com.notification.demo.model.Users;
 import com.notification.demo.model.common.SuccessResponseModel;
-
 import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Service
@@ -33,8 +29,6 @@ public class EmailSenderServiceimpl {
 		log.info(template.getSubject());
 		user.getNotifyto().forEach(x -> {
 			try {
-//				emailSenderServiceimpl.sendEmail(x.getEmail(), template.getSubject(), template.getMessageBody(),
-//						user.getCcto(), user.getBccto(), user.getAttachFile(), x.getName());
 				
 				String msg = template.getMessageBody().replace("{{#cusname}}", x.getName());
 				MimeMessage mimeMessage = mailsender.createMimeMessage();

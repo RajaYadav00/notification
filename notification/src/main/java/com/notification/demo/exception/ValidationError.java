@@ -10,10 +10,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ValidationError {
-	
-	private Integer status;
-	private Map<String,String> errorMessage;
-	private String path;
 
-	
+	private Integer status;
+	private Map<String, String> errorMessage;
+	private String path;
 }

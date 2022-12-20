@@ -1,4 +1,6 @@
 package com.notification.demo.controller;
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,11 +25,11 @@ public class NotificationTempController {
 	@Autowired
 	INotificationTemplateService inotificationService;
 	@PostMapping(value = "/saveNotificationTemplate")
-	public ResponseEntity<SuccessResponseModel> saveTemplate(@RequestBody String template) {
+	public ResponseEntity<SuccessResponseModel> saveTemplate(@Valid @RequestBody String template) {
 
 		LoggingResponseModel msgStart = LoggingResponseModel.builder().statusCode(HttpStatus.ACCEPTED)
 				.message("started at template saving").build();
-		log.info(gson.toJson(msgStart));
+		log.info(gson.toJson(msgStart));   
 		SuccessResponseModel response = inotificationService
 				.saveNotificationTemplate(gson.fromJson(template, NotificationTemplate.class));
 		return new ResponseEntity<>(response, HttpStatus.OK);

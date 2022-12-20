@@ -1,7 +1,6 @@
 package com.notification.demo.model.common;
 
 import org.springframework.http.HttpStatus;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

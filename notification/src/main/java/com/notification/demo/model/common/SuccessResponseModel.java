@@ -15,5 +15,4 @@ public class SuccessResponseModel {
 	private Integer status;
 	private String messsage;
 	private Integer templateId;
-
 }

@@ -1,7 +1,5 @@
 package com.notification.demo.service;
 
-import java.util.List;
-
 import javax.validation.Valid;
 import org.springframework.validation.annotation.Validated;
 import com.notification.demo.model.NotificationTemplate;

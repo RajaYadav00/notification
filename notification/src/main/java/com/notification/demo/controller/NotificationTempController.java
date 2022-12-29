@@ -1,8 +1,4 @@
 package com.notification.demo.controller;
-<<<<<<< HEAD
-=======
-import javax.validation.Valid;
->>>>>>> 80d7d443756e620f2a2395d1914a60305bb18fbd
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -43,16 +39,12 @@ public class NotificationTempController {
 	 * @return it will return the success response if template is saved successfully
 	 */
 	@PostMapping(value = "/saveNotificationTemplate")
-	public ResponseEntity<SuccessResponseModel> saveTemplate(@Valid @RequestBody String template) {
+	public ResponseEntity<SuccessResponseModel> saveTemplate(@RequestBody String template) {
 
 		LoggingResponseModel msgStart = LoggingResponseModel.builder().statusCode(HttpStatus.ACCEPTED)
 				.message("started at template saving").build();
-<<<<<<< HEAD
 		log.info(gson.toJson(msgStart));
 
-=======
-		log.info(gson.toJson(msgStart));   
->>>>>>> 80d7d443756e620f2a2395d1914a60305bb18fbd
 		SuccessResponseModel response = inotificationService
 				.saveNotificationTemplate(gson.fromJson(template, NotificationTemplate.class));
 
@@ -95,13 +87,13 @@ public class NotificationTempController {
 		return ResponseEntity.ok(responseTemplate);
 
 	}
-	
-	@PatchMapping(value="/updateNotificationTemplate")
-	public ResponseEntity<SuccessResponseModel>updateExistingTemplate(@RequestBody String template){
-		
+
+	@PatchMapping(value = "/updateNotificationTemplate")
+	public ResponseEntity<SuccessResponseModel> updateExistingTemplate(@RequestBody String template) {
+
 		System.out.println(template.intern());
 		return null;
-		
+
 	}
 
 }

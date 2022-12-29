@@ -1,6 +1,9 @@
 package com.notification.demo.service.impl;
 
+<<<<<<< HEAD
 import java.util.List;
+=======
+>>>>>>> 80d7d443756e620f2a2395d1914a60305bb18fbd
 import java.util.Optional;
 
 import javax.annotation.Generated;
@@ -16,10 +19,10 @@ import com.notification.demo.model.NotificationTemplate;
 import com.notification.demo.model.common.SuccessResponseModel;
 import com.notification.demo.repository.INotificationTemplateRepository;
 import com.notification.demo.service.INotificationTemplateService;
-
 @Service
 @Validated
 public class NotificationTemplateServiceImpl implements INotificationTemplateService {
+<<<<<<< HEAD
 
 	// This is use to serialize JSON object to java object an vice-versa
 	@Autowired
@@ -32,18 +35,21 @@ public class NotificationTemplateServiceImpl implements INotificationTemplateSer
 		this.iNotificationTemplateRepo = iNotificationTemplateRepo2;
 	}
 
+=======
+	@Autowired
+	INotificationTemplateRepository iNotificationTemplateRepo;
+	
+>>>>>>> 80d7d443756e620f2a2395d1914a60305bb18fbd
 	@Override
 	public SuccessResponseModel saveNotificationTemplate(@Valid NotificationTemplate notificationTemp) {
 		try {
 			iNotificationTemplateRepo.save(notificationTemp);
-
 		} catch (Exception e) {
 			throw new NotificationTemplateError(e.getCause().getMessage());
 		}
 		return SuccessResponseModel.builder().messsage("Template is successfully added to the system")
 				.templateId(notificationTemp.getId()).status(HttpStatus.OK.value()).build();
 	}
-
 	public NotificationTemplate getTemplate(Integer id) {
 		Optional<NotificationTemplate> opt = iNotificationTemplateRepo.findById(id);
 		if (!opt.isPresent()) {

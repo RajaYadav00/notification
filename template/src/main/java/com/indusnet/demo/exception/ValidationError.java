@@ -1,4 +1,4 @@
-package com.notification.demo.exception;
+package com.indusnet.demo.exception;
 
 import java.util.Map;
 

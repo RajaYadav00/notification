@@ -1,4 +1,4 @@
-package com.notification.demo.model;
+package com.indusnet.demo.model;
 
 import java.util.Date;
 
@@ -6,14 +6,16 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
-import com.notification.demo.model.common.NotificationTypeConst;
+import com.indusnet.demo.model.common.NotificationTypeConst;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -22,7 +24,7 @@ import lombok.NoArgsConstructor;
 public class NotificationTemplate {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
 	@NotNull(message = "notificationType is required")
 	private NotificationTypeConst notificationType;
@@ -30,6 +32,7 @@ public class NotificationTemplate {
 	private NotificationTypeConst type;
 	@NotNull(message = "template valide upto  is required")
 	private Date templateValidUpto;
+	@NotBlank(message = "subject should not be null or blank")
 	private String subject;
 	@NotNull(message = "message body is required")
 	private String messageBody;

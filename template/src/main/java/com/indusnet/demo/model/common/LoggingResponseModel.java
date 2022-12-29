@@ -1,4 +1,4 @@
-package com.notification.demo.model.common;
+package com.indusnet.demo.model.common;
 
 import org.springframework.http.HttpStatus;
 import lombok.AllArgsConstructor;

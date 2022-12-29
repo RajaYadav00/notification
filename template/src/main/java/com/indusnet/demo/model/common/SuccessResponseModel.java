@@ -1,4 +1,5 @@
-package com.notification.demo.model;
+package com.indusnet.demo.model.common;
+
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,10 +10,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class SmsUser {
-
-	private String name;
-	private String phone;
-	private Integer id;
+public class SuccessResponseModel {
 	
+	private Integer status;
+	private String messsage;
+	private Integer templateId;
 }

@@ -23,7 +23,7 @@ import lombok.NoArgsConstructor;
 public class NotificationTemplate {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	@NotNull(message = "notificationType is required")
 	private NotificationTypeConst notificationType;

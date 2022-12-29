@@ -1,5 +1,7 @@
 package com.notification.demo.service;
 
+import java.util.List;
+
 import javax.validation.Valid;
 import org.springframework.validation.annotation.Validated;
 import com.notification.demo.model.NotificationTemplate;
@@ -8,5 +10,9 @@ import com.notification.demo.model.common.SuccessResponseModel;
 @Validated
 public interface INotificationTemplateService {
 	public SuccessResponseModel saveNotificationTemplate(@Valid NotificationTemplate notificationTemp);
+
+	public SuccessResponseModel getAllTemplateFromDatabase();
+
+	public SuccessResponseModel replaceTemplate(Integer id,NotificationTemplate notificationTemplate);
 
 }

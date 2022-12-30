@@ -3,6 +3,7 @@ package com.notification.demo.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import com.google.gson.Gson;
 import com.notification.demo.model.NotificationTemplate;
@@ -65,7 +67,7 @@ public class NotificationTempController {
 				.build();
 		log.info(gson.toJson(msgStart));
 
-		SuccessResponseModel responseTemplate = inotificationService.getAllTemplateFromDatabase();
+		SuccessResponseModel responseTemplate = inotificationService.getAllNotificationTemplateFromDatabase();
 		return ResponseEntity.ok(responseTemplate);
 
 	}
@@ -82,8 +84,29 @@ public class NotificationTempController {
 	public ResponseEntity<SuccessResponseModel> changeTemplateById(@PathVariable("id") Integer id,
 			@RequestBody String template) {
 
-		SuccessResponseModel responseTemplate = inotificationService.replaceTemplate(id,
+		LoggingResponseModel msgStart = LoggingResponseModel.builder().message("Started changing the templates")
+				.build();
+		log.info(gson.toJson(msgStart));
+
+		SuccessResponseModel responseTemplate = inotificationService.replaceNotificationTemplate(id,
 				gson.fromJson(template, NotificationTemplate.class));
+		return ResponseEntity.ok(responseTemplate);
+
+	}
+
+	/**
+	 * @param id this is the id template to be deleted from database
+	 * @return it return the success response with message if data is deleted
+	 *         successfully
+	 */
+	@DeleteMapping(value = "/deleteNotificationTemplate/{id}")
+	public ResponseEntity<SuccessResponseModel> deleteNotificationTemplateById(@RequestParam(value="id") Integer id) {
+
+		LoggingResponseModel msgStart = LoggingResponseModel.builder()
+				.message("Started deleting the notificationTemplate").build();
+		log.info(gson.toJson(msgStart));
+		
+		SuccessResponseModel responseTemplate = inotificationService.deleteNotificationTemplate(id);
 		return ResponseEntity.ok(responseTemplate);
 
 	}

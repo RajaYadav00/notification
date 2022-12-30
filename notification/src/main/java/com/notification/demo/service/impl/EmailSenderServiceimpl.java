@@ -1,7 +1,6 @@
 package com.notification.demo.service.impl;
 
 import java.io.File;
-import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.FileSystemResource;
@@ -9,8 +8,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
+import com.notification.demo.model.EmailDetails;
 import com.notification.demo.model.NotificationTemplate;
-import com.notification.demo.model.Users;
 import com.notification.demo.model.common.SuccessResponseModel;
 import lombok.extern.slf4j.Slf4j;
 @Slf4j
@@ -22,12 +21,12 @@ public class EmailSenderServiceimpl {
 	@Autowired
 	NotificationTemplateServiceImpl notificationTemplateServiceImpl;
 
-	public SuccessResponseModel sendEmail( Users user) throws MessagingException {
+	public SuccessResponseModel sendEmail(EmailDetails details) {
 		
-		Integer templateId = user.getNotificationTemplateId();
+		Integer templateId = details.getNotificationTemplateId();
 		NotificationTemplate template = notificationTemplateServiceImpl.getTemplate(templateId);
 		log.info(template.getSubject());
-		user.getNotifyto().forEach(x -> {
+		details.getNotifyto().forEach(x -> {
 			try {
 				
 				String msg = template.getMessageBody().replace("{{#cusname}}", x.getName());
@@ -37,11 +36,11 @@ public class EmailSenderServiceimpl {
 				mimemessagehelper.setTo(x.getEmail());
 				mimemessagehelper.setText(msg);
 				mimemessagehelper.setSubject(template.getSubject());
-				mimemessagehelper.setCc(user.getCcto());
-				mimemessagehelper.setBcc(user.getBccto());
+				mimemessagehelper.setCc(details.getCcto());
+				mimemessagehelper.setBcc(details.getBccto());
 		       
-				for(int i=0;i<user.getAttachFile().length;i++) {
-				FileSystemResource filesystemResorce = new FileSystemResource(new File(user.getAttachFile()[i]));
+				for(int i=0;i<details.getAttachFile().length;i++) {
+				FileSystemResource filesystemResorce = new FileSystemResource(new File(details.getAttachFile()[i]));
 				mimemessagehelper.addAttachment(filesystemResorce.getFilename(), filesystemResorce);}
 				mailsender.send(mimeMessage);
 			} catch (Exception e) {

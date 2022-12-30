@@ -52,7 +52,7 @@ public class NotificationTemplateServiceImpl implements INotificationTemplateSer
 	 * this method is used to find list of all the template from database
 	 */
 	@Override
-	public SuccessResponseModel getAllTemplateFromDatabase() {
+	public SuccessResponseModel getAllNotificationTemplateFromDatabase() {
 
 		List<NotificationTemplate> templates = iNotificationTemplateRepo.findAll();
 
@@ -67,7 +67,7 @@ public class NotificationTemplateServiceImpl implements INotificationTemplateSer
 	 * This method is used to replace the existing notificationTemplate with new one
 	 */
 	@Override
-	public SuccessResponseModel replaceTemplate(Integer id, NotificationTemplate notificationTemplate) {
+	public SuccessResponseModel replaceNotificationTemplate(Integer id, NotificationTemplate notificationTemplate) {
 
 		Optional<NotificationTemplate> opttemplate = iNotificationTemplateRepo.findById(id);
 		if (opttemplate.isPresent()) {
@@ -76,6 +76,14 @@ public class NotificationTemplateServiceImpl implements INotificationTemplateSer
 			throw new NotificationTemplateError("template not found having id :" + id);
 		}
 
+		return SuccessResponseModel.builder().messsage("Template is successfully changed").templateId(null)
+				.status(HttpStatus.OK.value()).build();
+	}
+
+	@Override
+	public SuccessResponseModel deleteNotificationTemplate(Integer id) {
+		
+		iNotificationTemplateRepo.deleteById(id);
 		return SuccessResponseModel.builder().messsage("Template is successfully changed").templateId(null)
 				.status(HttpStatus.OK.value()).build();
 	}

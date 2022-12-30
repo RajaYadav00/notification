@@ -12,7 +12,8 @@ import lombok.ToString;
 @Getter
 @Builder
 @ToString
-public class Users {
+public class EmailDetails {
+	
 	// private String notificationType;
 	private String processType;
 	private String ScheduledTime;
@@ -23,6 +24,6 @@ public class Users {
 	private String[] ccto;
 	private String[] bccto;
 	@OneToMany
-	private List<User> notifyto = new ArrayList<>();
+	private List<NotifyTo> notifyto = new ArrayList<>();
 
 }

@@ -11,7 +11,7 @@ import lombok.Getter;
 @Entity
 @Getter
 @Builder
-public class User {
+public class NotifyTo {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;

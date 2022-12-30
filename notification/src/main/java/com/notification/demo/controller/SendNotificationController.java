@@ -9,18 +9,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import com.notification.demo.model.NotificationTemplate;
-import com.notification.demo.model.SmsWhatsappModule;
 import com.notification.demo.model.Users;
 import com.notification.demo.model.common.SuccessResponseModel;
 import com.notification.demo.service.ISmsService;
 import com.notification.demo.service.impl.EmailSenderServiceimpl;
-import com.notification.demo.service.impl.NotificationTemplateServiceImpl;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @RestController
-@RequestMapping("api/v0.0.1/otp")
+@RequestMapping("api/v0.0.1/notification")
 public class SendNotificationController {
 	@Autowired
 	private EmailSenderServiceimpl emailSenderServiceimpl;
@@ -28,7 +25,7 @@ public class SendNotificationController {
 	@Autowired
 	ISmsService ismsService;
 
-	@PostMapping("/sendemailnotification")
+	@PostMapping("/sendEmailNotification")
 	public ResponseEntity<SuccessResponseModel> sendNotificationviamail(@RequestBody Users user)
 			throws MessagingException {
 		log.info("Users dto is working");

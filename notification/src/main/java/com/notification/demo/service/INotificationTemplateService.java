@@ -8,4 +8,8 @@ import com.notification.demo.model.common.SuccessResponseModel;
 public interface INotificationTemplateService {
 	public SuccessResponseModel saveNotificationTemplate(@Valid NotificationTemplate notificationTemp);
 
+	public SuccessResponseModel getAllTemplateFromDatabase();
+
+	public SuccessResponseModel replaceTemplate(Integer id,NotificationTemplate notificationTemplate);
+
 }

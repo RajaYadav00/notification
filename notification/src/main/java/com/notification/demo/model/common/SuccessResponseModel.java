@@ -1,6 +1,5 @@
 package com.notification.demo.model.common;
 
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

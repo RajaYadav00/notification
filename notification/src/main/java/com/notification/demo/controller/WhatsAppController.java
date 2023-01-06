@@ -1,20 +1,16 @@
 package com.notification.demo.controller;
 
 import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.notification.demo.model.SmsWhatsappModule;
 import com.notification.demo.model.common.SuccessResponseModel;
 import com.notification.demo.service.impl.WhatsAppService;
-
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -24,7 +20,12 @@ public class WhatsAppController {
 
 	@Autowired
 	WhatsAppService whatsappService;
-
+	
+	/**
+	 * 
+	 * @param req this variable holds the details of whatsapp messages
+	 * @return  it return the success response with the message and response code
+	 */
 	@PostMapping("/sendWhatsappNotification")
 	public ResponseEntity<SuccessResponseModel> sendWhatsappNotification(@RequestBody @Valid SmsWhatsappModule req){
 		

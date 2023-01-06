@@ -53,7 +53,6 @@ public class NotificationTempController {
 		return new ResponseEntity<>(response, HttpStatus.OK);
 
 	}
-
 	/**
 	 * This method is used to get the list of template stored in the database
 	 * 
@@ -71,7 +70,6 @@ public class NotificationTempController {
 		return ResponseEntity.ok(responseTemplate);
 
 	}
-
 	/**
 	 * This method is used to update the existing template
 	 * 
@@ -79,7 +77,6 @@ public class NotificationTempController {
 	 * @param template it has the details of template to be updated
 	 * @return it returns the success response if template updated successfully
 	 */
-
 	@PutMapping(value = "/changeNotificationTemplateById/{id}")
 	public ResponseEntity<SuccessResponseModel> changeTemplateById(@PathVariable("id") Integer id,
 			@RequestBody String template) {

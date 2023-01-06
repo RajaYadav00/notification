@@ -3,7 +3,6 @@ package com.notification.demo.model;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
-
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -18,10 +17,8 @@ import lombok.NoArgsConstructor;
 public class SmsWhatsappModule {
 	
 	@NotNull(message = "Notificatoin type should not be null")
-//	@Pattern(regexp = "[a-zA-Z]",message = "notification type should contain only alphbets")
 	private String notificationType;
 	@NotEmpty(message = "Process type should not be null")
-//	@Pattern(regexp = "[a-zA-Z]",message = "process type should contain only alphbets")
 	private String processType;
 	@NotNull(message = "Scheduled time should not be null")
 	private Date scheduledTime;

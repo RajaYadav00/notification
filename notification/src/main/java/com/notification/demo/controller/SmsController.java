@@ -3,12 +3,10 @@ package com.notification.demo.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.google.gson.Gson;
 import com.notification.demo.model.SmsWhatsappModule;
 import com.notification.demo.model.common.SuccessResponseModel;
@@ -33,11 +31,9 @@ public class SmsController {
 	 * @return it will return the success response with status code if message is
 	 *         success
 	 */
-
 	@PostMapping("/sendSmsNotification")
 	public ResponseEntity<SuccessResponseModel> sendSmsNotification(@RequestBody String smsdetails) {
 		log.info("SmsModule is working");
-		
 		SuccessResponseModel response = ismsService.sendSms(gson.fromJson(smsdetails,SmsWhatsappModule.class ));
 		return new ResponseEntity<>(response, HttpStatus.OK);
 

@@ -29,7 +29,6 @@ public class EmailSenderServiceimpl {
 		log.info(template.getSubject());
 		details.getNotifyto().forEach(x -> {
 			try {
-
 				String msg = template.getMessageBody().replace("{{#cusname}}", x.getName());
 				MimeMessage mimeMessage = mailsender.createMimeMessage();
 				MimeMessageHelper mimemessagehelper = new MimeMessageHelper(mimeMessage, true);
@@ -49,7 +48,6 @@ public class EmailSenderServiceimpl {
 				e.printStackTrace();
 			}
 		});
-
 		return SuccessResponseModel.builder().status(HttpStatus.ACCEPTED.value())
 				.messsage("The Email-notification is generated").templateId(templateId).build();
 

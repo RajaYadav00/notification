@@ -58,7 +58,7 @@ public class NotificationTemplateServiceImpl implements INotificationTemplateSer
 
 		String response = gson.toJson(templates);
 
-		return SuccessResponseModel.builder().messsage(":List of templates :".concat(response.toString()))
+		return SuccessResponseModel.builder().messsage(":List of templates :".concat(response))
 				.templateId(null).status(HttpStatus.OK.value()).build();
 
 	}

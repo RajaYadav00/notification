@@ -114,7 +114,6 @@ public class NotificationTempController {
 	@PatchMapping(value = "/updateNotificationTemplate")
 	public ResponseEntity<SuccessResponseModel> updateExistingTemplate(@RequestBody String template) {
 
-		System.out.println(template.intern());
 		return null;
 
 	}

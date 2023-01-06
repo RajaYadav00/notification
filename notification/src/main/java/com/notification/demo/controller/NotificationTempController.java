@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import com.google.gson.Gson;
-import com.notification.demo.model.NotificationTemplate;
+import com.notification.demo.model.NotificationTemplateModel;
 import com.notification.demo.model.common.LoggingResponseModel;
 import com.notification.demo.model.common.SuccessResponseModel;
 import com.notification.demo.service.INotificationTemplateService;
@@ -48,7 +48,7 @@ public class NotificationTempController {
 		log.info(gson.toJson(msgStart));
 
 		SuccessResponseModel response = inotificationService
-				.saveNotificationTemplate(gson.fromJson(template, NotificationTemplate.class));
+				.saveNotificationTemplate(gson.fromJson(template, NotificationTemplateModel.class));
 
 		return new ResponseEntity<>(response, HttpStatus.OK);
 
@@ -86,7 +86,7 @@ public class NotificationTempController {
 		log.info(gson.toJson(msgStart));
 
 		SuccessResponseModel responseTemplate = inotificationService.replaceNotificationTemplate(id,
-				gson.fromJson(template, NotificationTemplate.class));
+				gson.fromJson(template, NotificationTemplateModel.class));
 		return ResponseEntity.ok(responseTemplate);
 
 	}

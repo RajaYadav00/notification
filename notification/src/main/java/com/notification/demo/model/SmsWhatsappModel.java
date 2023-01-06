@@ -14,22 +14,29 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class SmsWhatsappModule {
+public class SmsWhatsappModel {
 	
 	@NotNull(message = "Notificatoin type should not be null")
 	private String notificationType;
+	
 	@NotEmpty(message = "Process type should not be null")
 	private String processType;
+	
 	@NotNull(message = "Scheduled time should not be null")
 	private Date scheduledTime;
+	
 	@NotNull(message = "Notificatoin template Id should not be null")
 	private Integer notificationTemplateId;
+	
 	@NotNull(message = "Other customizable object should not be null")
 	private Map<String ,String> otherCustomizableObject;
+	
 	@NotNull(message = "NotifyTo type should not be null")
-	private List<SmsWhatsappUser> notifyTo;
+	private List<SmsWhatsappUserPojo> notifyTo;
+	
 	@NotEmpty(message = "requestOn should not be null")
 	private String requeston;
+	
 	@NotEmpty(message = "requestdevice type should not be null")
 	private String requestdevice;
 

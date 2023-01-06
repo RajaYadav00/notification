@@ -8,25 +8,27 @@ import org.springframework.http.HttpStatus;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
-import com.notification.demo.model.EmailDetails;
-import com.notification.demo.model.NotificationTemplate;
+import com.notification.demo.model.EmailDetailsModel;
+import com.notification.demo.model.NotificationTemplateModel;
 import com.notification.demo.model.common.SuccessResponseModel;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Service
 public class EmailSenderServiceimpl {
+	
 	@Autowired
 	JavaMailSender mailsender;
 
 	@Autowired
 	NotificationTemplateServiceImpl notificationTemplateServiceImpl;
 
-	public SuccessResponseModel sendEmail(EmailDetails details) {
+	public SuccessResponseModel sendEmail(EmailDetailsModel details) {
 
 		Integer templateId = details.getNotificationTemplateId();
-		NotificationTemplate template = notificationTemplateServiceImpl.getTemplate(templateId);
+		NotificationTemplateModel template = notificationTemplateServiceImpl.getTemplate(templateId);
 		log.info(template.getSubject());
+		
 		details.getNotifyto().forEach(x -> {
 			try {
 				String msg = template.getMessageBody().replace("{{#cusname}}", x.getName());
@@ -43,13 +45,15 @@ public class EmailSenderServiceimpl {
 					FileSystemResource filesystemResorce = new FileSystemResource(new File(details.getAttachFile()[i]));
 					mimemessagehelper.addAttachment(filesystemResorce.getFilename(), filesystemResorce);
 				}
+				
 				mailsender.send(mimeMessage);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		});
-		return SuccessResponseModel.builder().status(HttpStatus.ACCEPTED.value())
-				.messsage("The Email-notification is generated").templateId(templateId).build();
+		
+		return SuccessResponseModel.builder().statusCode(HttpStatus.ACCEPTED.value())
+				.message("The Email-notification is generated").messageTypeId(templateId).build();
 
 	}
 

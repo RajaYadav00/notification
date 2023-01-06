@@ -2,7 +2,7 @@ package com.notification.demo.service;
 
 import javax.validation.Valid;
 import org.springframework.validation.annotation.Validated;
-import com.notification.demo.model.SmsWhatsappModule;
+import com.notification.demo.model.SmsWhatsappModel;
 import com.notification.demo.model.common.SuccessResponseModel;
 
 /**
@@ -19,6 +19,6 @@ public interface ISmsService {
 	 * @param sms This variable hold the details of sms
 	 * @return it will return the success response with message
 	 */
-	public SuccessResponseModel sendSms(@Valid SmsWhatsappModule sms);
+	public SuccessResponseModel sendSms(@Valid SmsWhatsappModel sms);
 
 }

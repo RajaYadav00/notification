@@ -17,22 +17,29 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 @Entity
-public class NotificationTemplate {
+public class NotificationTemplateModel {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+	
 	@NotNull(message = "notificationType is required")
 	private NotificationTypeConst notificationType;
+	
 	@NotNull(message = "notificationTypeConst is required")
 	private NotificationTypeConst type;
+	
 	@NotNull(message = "template valide upto  is required")
 	private Date templateValidUpto;
+	
 	private String subject;
+	
 	@NotNull(message = "message body is required")
 	private String messageBody;
+	
 	@NotNull(message = "requested device is required")
 	private String requestDevice;
+	
 	@NotNull(message = "request on  date is required")
 	private Date requestOn;
 

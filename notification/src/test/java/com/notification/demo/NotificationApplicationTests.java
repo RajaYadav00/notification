@@ -12,7 +12,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.HttpStatus;
 
-import com.notification.demo.model.NotificationTemplate;
+import com.notification.demo.model.NotificationTemplateModel;
 import com.notification.demo.model.common.NotificationTypeConst;
 import com.notification.demo.model.common.SuccessResponseModel;
 import com.notification.demo.repository.INotificationTemplateRepository;
@@ -35,7 +35,7 @@ class NotificationApplicationTests {
 	
 	@Test
 	void contextLoads() {
-		NotificationTemplate notificationTemplate=NotificationTemplate.builder()
+		NotificationTemplateModel notificationTemplate=NotificationTemplateModel.builder()
 				.messageBody("jai ram ji")
 				.notificationType(NotificationTypeConst.SMS)
 				.requestDevice("android")
@@ -47,7 +47,7 @@ class NotificationApplicationTests {
 	SuccessResponseModel model=iNotificationTemplateService.saveNotificationTemplate(notificationTemplate);
 	
 	
-	assertThat(HttpStatus.OK.value()).isEqualTo(model.getStatus());
+	assertThat(HttpStatus.OK.value()).isEqualTo(model.getStatusCode());
 	
 	}
 

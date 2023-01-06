@@ -10,15 +10,21 @@ import lombok.ToString;
 @Getter
 @Builder
 @ToString
-public class EmailDetails {
+public class EmailDetailsModel {
 	
 	private String processType;
+	
 	private String scheduledTime;
+	
 	private Integer notificationTemplateId;
+	
 	private String[] attachFile;
+	
 	private String[] ccto;
+	
 	private String[] bccto;
+	
 	@OneToMany
-	private List<NotifyTo> notifyto = new ArrayList<>();
+	private List<NotifyToPojo> notifyto = new ArrayList<>();
 
 }

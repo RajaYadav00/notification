@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.google.gson.Gson;
-import com.notification.demo.model.SmsWhatsappModule;
+import com.notification.demo.model.SmsWhatsappModel;
 import com.notification.demo.model.common.SuccessResponseModel;
 import com.notification.demo.service.ISmsService;
 import lombok.extern.slf4j.Slf4j;
@@ -34,7 +34,7 @@ public class SmsController {
 	@PostMapping("/sendSmsNotification")
 	public ResponseEntity<SuccessResponseModel> sendSmsNotification(@RequestBody String smsdetails) {
 		log.info("SmsModule is working");
-		SuccessResponseModel response = ismsService.sendSms(gson.fromJson(smsdetails,SmsWhatsappModule.class ));
+		SuccessResponseModel response = ismsService.sendSms(gson.fromJson(smsdetails,SmsWhatsappModel.class ));
 		return new ResponseEntity<>(response, HttpStatus.OK);
 
 	}

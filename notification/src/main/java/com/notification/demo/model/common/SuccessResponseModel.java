@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @Builder
 public class SuccessResponseModel {
 	
-	private Integer status;
-	private String messsage;
-	private Integer templateId;
+	private Integer statusCode;
+	private String message;
+	private Integer messageTypeId;
 }

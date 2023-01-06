@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 import com.google.gson.Gson;
 import com.notification.demo.exception.NotificationTemplateError;
-import com.notification.demo.model.NotificationTemplate;
+import com.notification.demo.model.NotificationTemplateModel;
 import com.notification.demo.model.common.SuccessResponseModel;
 import com.notification.demo.repository.INotificationTemplateRepository;
 import com.notification.demo.service.INotificationTemplateService;
@@ -38,14 +38,14 @@ public class NotificationTemplateServiceImpl implements INotificationTemplateSer
 	 * this method is used to save the template in database
 	 */
 	@Override
-	public SuccessResponseModel saveNotificationTemplate(NotificationTemplate notificationTemp) {
+	public SuccessResponseModel saveNotificationTemplate(NotificationTemplateModel notificationTemp) {
 		try {
 			iNotificationTemplateRepo.save(notificationTemp);
 		} catch (Exception e) {
 			throw new NotificationTemplateError(e.getCause().getMessage());
 		}
-		return SuccessResponseModel.builder().messsage("Template is successfully added to the system")
-				.templateId(notificationTemp.getId()).status(HttpStatus.OK.value()).build();
+		return SuccessResponseModel.builder().message("Template is successfully added to the system")
+				.messageTypeId(notificationTemp.getId()).statusCode(HttpStatus.OK.value()).build();
 	}
 
 	/**
@@ -54,12 +54,12 @@ public class NotificationTemplateServiceImpl implements INotificationTemplateSer
 	@Override
 	public SuccessResponseModel getAllNotificationTemplateFromDatabase() {
 
-		List<NotificationTemplate> templates = iNotificationTemplateRepo.findAll();
+		List<NotificationTemplateModel> templates = iNotificationTemplateRepo.findAll();
 
 		String response = gson.toJson(templates);
 
-		return SuccessResponseModel.builder().messsage(":List of templates :".concat(response))
-				.templateId(null).status(HttpStatus.OK.value()).build();
+		return SuccessResponseModel.builder().message(":List of templates :".concat(response))
+				.messageTypeId(null).statusCode(HttpStatus.OK.value()).build();
 
 	}
 
@@ -67,25 +67,25 @@ public class NotificationTemplateServiceImpl implements INotificationTemplateSer
 	 * This method is used to replace the existing notificationTemplate with new one
 	 */
 	@Override
-	public SuccessResponseModel replaceNotificationTemplate(Integer id, NotificationTemplate notificationTemplate) {
+	public SuccessResponseModel replaceNotificationTemplate(Integer id, NotificationTemplateModel notificationTemplate) {
 
-		Optional<NotificationTemplate> opttemplate = iNotificationTemplateRepo.findById(id);
+		Optional<NotificationTemplateModel> opttemplate = iNotificationTemplateRepo.findById(id);
 		if (opttemplate.isPresent()) {
 			iNotificationTemplateRepo.save(notificationTemplate);
 		} else {
 			throw new NotificationTemplateError("template not found having id :" + id);
 		}
 
-		return SuccessResponseModel.builder().messsage("Template is successfully changed").templateId(null)
-				.status(HttpStatus.OK.value()).build();
+		return SuccessResponseModel.builder().message("Template is successfully changed").messageTypeId(null)
+				.statusCode(HttpStatus.OK.value()).build();
 	}
 
 	@Override
 	public SuccessResponseModel deleteNotificationTemplate(Integer id) {
 		
 		iNotificationTemplateRepo.deleteById(id);
-		return SuccessResponseModel.builder().messsage("Template is successfully changed").templateId(null)
-				.status(HttpStatus.OK.value()).build();
+		return SuccessResponseModel.builder().message("Template is successfully changed").messageTypeId(null)
+				.statusCode(HttpStatus.OK.value()).build();
 	}
 
 	/**
@@ -94,8 +94,8 @@ public class NotificationTemplateServiceImpl implements INotificationTemplateSer
 	 * @param id it is the Id of template to be find
 	 * @return it returns the Notification Template
 	 */
-	public NotificationTemplate getTemplate(Integer id) {
-		Optional<NotificationTemplate> opt = iNotificationTemplateRepo.findById(id);
+	public NotificationTemplateModel getTemplate(Integer id) {
+		Optional<NotificationTemplateModel> opt = iNotificationTemplateRepo.findById(id);
 		if (!opt.isPresent()) {
 			throw new NotificationTemplateError("Notification template is not present having Id :" + id);
 		}

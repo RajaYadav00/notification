@@ -11,12 +11,14 @@ import lombok.Getter;
 @Entity
 @Getter
 @Builder
-public class NotifyTo {
+public class NotifyToPojo {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
+	
 	@NotNull(message = "name of should not be null")
 	private String name;
+	
 	@NotNull(message = "Id should not be null")
 	private String email;
 }

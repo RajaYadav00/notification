@@ -2,7 +2,7 @@ package com.notification.demo.service;
 
 import javax.validation.Valid;
 import org.springframework.validation.annotation.Validated;
-import com.notification.demo.model.NotificationTemplate;
+import com.notification.demo.model.NotificationTemplateModel;
 import com.notification.demo.model.common.SuccessResponseModel;
 /**
  * This interface is used for Notification template
@@ -21,7 +21,7 @@ public interface INotificationTemplateService {
 	 * @param notificationTemp This holds the details of notification template
 	 * @return this method return the success response if data is saved successfully
 	 */
-	public SuccessResponseModel saveNotificationTemplate(@Valid NotificationTemplate notificationTemp);
+	public SuccessResponseModel saveNotificationTemplate(@Valid NotificationTemplateModel notificationTemp);
 
 	/**
 	 * This method us used to fetch the list of templates
@@ -35,7 +35,7 @@ public interface INotificationTemplateService {
 	 * @param notificationTemplate this is the details to be updated
 	 * @return it return the success response with message that template is updated
 	 */
-	public SuccessResponseModel replaceNotificationTemplate(Integer id,NotificationTemplate notificationTemplate);
+	public SuccessResponseModel replaceNotificationTemplate(Integer id,NotificationTemplateModel notificationTemplate);
 	public SuccessResponseModel deleteNotificationTemplate(Integer id);
 
 }

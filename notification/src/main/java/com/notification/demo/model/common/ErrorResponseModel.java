@@ -17,6 +17,5 @@ public class ErrorResponseModel {
 	private Integer errorCode;
 	private String errorMessage;
 	private long traceID;
-	private String errorDetails;
 	private String path;
 }

@@ -10,12 +10,14 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class SmsWhatsappUser {
+public class SmsWhatsappUserPojo {
 
 	@NotNull(message = "name of should not be null")
 	private String name;
+	
 	@NotNull(message = "phome number should not be null")
 	private String phone;
+	
 	@NotNull(message = "Id should not be null")
 	private Integer id;
 	

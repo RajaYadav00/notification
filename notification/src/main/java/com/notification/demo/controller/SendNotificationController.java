@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.google.gson.Gson;
-import com.notification.demo.model.EmailDetails;
+import com.notification.demo.model.EmailDetailsModel;
 import com.notification.demo.model.common.LoggingResponseModel;
 import com.notification.demo.model.common.SuccessResponseModel;
 import com.notification.demo.service.ISmsService;
@@ -42,7 +42,7 @@ public class SendNotificationController {
 				.message("started at sending emailNotification").build();
 		log.info(gson.toJson(msgStart));
 
-		SuccessResponseModel response = emailSenderServiceimpl.sendEmail(gson.fromJson(details, EmailDetails.class));
+		SuccessResponseModel response = emailSenderServiceimpl.sendEmail(gson.fromJson(details, EmailDetailsModel.class));
 		return new ResponseEntity<>(response, HttpStatus.OK);
 	}
 

@@ -12,6 +12,7 @@ import lombok.Getter;
 @Getter
 @Builder
 public class NotifyToPojo {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;

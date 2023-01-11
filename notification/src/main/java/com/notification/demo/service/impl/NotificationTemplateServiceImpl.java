@@ -39,11 +39,13 @@ public class NotificationTemplateServiceImpl implements INotificationTemplateSer
 	 */
 	@Override
 	public SuccessResponseModel saveNotificationTemplate(NotificationTemplateModel notificationTemp) {
+		
 		try {
 			iNotificationTemplateRepo.save(notificationTemp);
 		} catch (Exception e) {
 			throw new NotificationTemplateError(e.getCause().getMessage());
 		}
+		
 		return SuccessResponseModel.builder().message("Template is successfully added to the system")
 				.messageTypeId(notificationTemp.getId()).statusCode(HttpStatus.OK.value()).build();
 	}
@@ -95,7 +97,9 @@ public class NotificationTemplateServiceImpl implements INotificationTemplateSer
 	 * @return it returns the Notification Template
 	 */
 	public NotificationTemplateModel getTemplate(Integer id) {
+		
 		Optional<NotificationTemplateModel> opt = iNotificationTemplateRepo.findById(id);
+		
 		if (!opt.isPresent()) {
 			throw new NotificationTemplateError("Notification template is not present having Id :" + id);
 		}

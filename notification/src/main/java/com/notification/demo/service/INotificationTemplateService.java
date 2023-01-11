@@ -36,6 +36,13 @@ public interface INotificationTemplateService {
 	 * @return it return the success response with message that template is updated
 	 */
 	public SuccessResponseModel replaceNotificationTemplate(Integer id,NotificationTemplateModel notificationTemplate);
+	
+	/**
+	 * This method is used to delete the template with new template by using  id
+	 * 
+	 * @param id this is Id of template whose details we want to delete
+	 * @return it return the success response with message that template is delete
+	 */
 	public SuccessResponseModel deleteNotificationTemplate(Integer id);
 
 }

@@ -17,8 +17,6 @@ import com.google.gson.Gson;
 import com.notification.demo.common.MessageTypeConst;
 import com.notification.demo.model.common.ErrorResponseModel;
 import com.notification.demo.model.common.LoggingResponseModel;
-import com.notification.demo.model.common.SuccessResponseModel;
-
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -75,7 +73,7 @@ public class GlobleExceptionHandler {
 		log.error(gson.toJson(LoggingResponseModel.builder().message(msg).messageTypeId(MessageTypeConst.OTHERS)
 				.statusCode(HttpStatus.UNPROCESSABLE_ENTITY).build()));
 		
-		return new ResponseEntity<ErrorResponseModel>(errorResponse,HttpStatus.BAD_REQUEST);
+		return new ResponseEntity<>(errorResponse,HttpStatus.BAD_REQUEST);
 	}
 
 }

@@ -5,7 +5,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -53,6 +52,7 @@ public class NotificationTempController {
 		return new ResponseEntity<>(response, HttpStatus.OK);
 
 	}
+
 	/**
 	 * This method is used to get the list of template stored in the database
 	 * 
@@ -70,6 +70,7 @@ public class NotificationTempController {
 		return ResponseEntity.ok(responseTemplate);
 
 	}
+
 	/**
 	 * This method is used to update the existing template
 	 * 
@@ -97,21 +98,14 @@ public class NotificationTempController {
 	 *         successfully
 	 */
 	@DeleteMapping(value = "/deleteNotificationTemplate/{id}")
-	public ResponseEntity<SuccessResponseModel> deleteNotificationTemplateById(@RequestParam(value="id") Integer id) {
+	public ResponseEntity<SuccessResponseModel> deleteNotificationTemplateById(@RequestParam(value = "id") Integer id) {
 
 		LoggingResponseModel msgStart = LoggingResponseModel.builder()
 				.message("Started deleting the notificationTemplate").build();
 		log.info(gson.toJson(msgStart));
-		
+
 		SuccessResponseModel responseTemplate = inotificationService.deleteNotificationTemplate(id);
 		return ResponseEntity.ok(responseTemplate);
-
-	}
-
-	@PatchMapping(value = "/updateNotificationTemplate")
-	public ResponseEntity<SuccessResponseModel> updateExistingTemplate(@RequestBody String template) {
-
-		return null;
 
 	}
 

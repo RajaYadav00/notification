@@ -24,6 +24,7 @@ public class WhatsAppService implements IWhatsAppService {
 
 		NotificationTemplateModel template = notificationTemplateServiceImpl
 				.getTemplate(whatsapp.getNotificationTemplateId());
+		
 		whatsapp.getNotifyTo().forEach(user -> {
 
 			String msg = template.getMessageBody().replace("{{#cusname}}", user.getName());

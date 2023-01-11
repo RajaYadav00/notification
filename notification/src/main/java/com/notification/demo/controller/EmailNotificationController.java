@@ -18,7 +18,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @RestController
 @RequestMapping("api/v0.0.1/notification")
-public class SendNotificationController {
+public class EmailNotificationController {
 
 	// This is use to serialize JSON object to java object an vice-versa
 	@Autowired

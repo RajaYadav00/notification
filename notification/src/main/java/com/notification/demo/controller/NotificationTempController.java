@@ -34,7 +34,6 @@ public class NotificationTempController {
 	/**
 	 * This method will take the details of template in String and send it to the
 	 * service layer
-	 * 
 	 * @param template It has the details of the template which we get when front
 	 *                 end
 	 * @return it will return the success response if template is saved successfully
@@ -106,7 +105,5 @@ public class NotificationTempController {
 
 		SuccessResponseModel responseTemplate = inotificationService.deleteNotificationTemplate(id);
 		return ResponseEntity.ok(responseTemplate);
-
 	}
-
 }
